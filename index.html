@@ -26,7 +26,7 @@
     
       .breath-card{display:grid;place-items:center;border-radius:var(--radius-standard);padding:1.5rem;background-color:var(--surface-bg);border:1px solid var(--bs-border-color)}
       .breath-ring{width:min(320px,60vw);height:min(320px,60vw);border-radius:999px;background-image:conic-gradient(var(--color,var(--accent-start)) var(--p,0deg), rgba(0,0,0,.06) 0);position:relative;box-shadow:0 20px 40px rgba(0,0,0,.12)}
-      .breath-ring::before{content:"";position:absolute;inset:12px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border-color);backdrop-filter:blur(12px)}
+      .breath-ring::before{content:"";position:absolute;inset:12px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border-color); -webkit-backdrop-filter:blur(12px) ; backdrop-filter:blur(12px)}
       .breath-phase{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
       .breath-phase .label{font-weight:700}
       .breath-phase .count{font-size:2rem}
