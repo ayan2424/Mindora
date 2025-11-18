@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Mindora offers beginner‑friendly aerobic training and breath‑focused meditation to build a healthy mind and resilient body.">
+    <link rel="canonical" href="/">
+    <title>Mindora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/css/app.min.css?v=1" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+    <style>
+      .hero-swiper{position:relative;min-height:100vh}
+      .hero-carousel,.hero-carousel .swiper-wrapper,.hero-carousel .swiper-slide{height:100%}
+      .hero-slide-full{position:relative;width:100%;height:100%}
+      .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat}
+      .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.25), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.25), transparent 60%)}
+      .hero-content{position:relative;z-index:2;display:flex;align-items:center;height:100%;padding:1rem}
+      .hero-content h1{font-weight:700}
+      .hero-content p{max-width:42rem}
+    
+      .breath-card{display:grid;place-items:center;border-radius:var(--radius-standard);padding:1.5rem;background-color:var(--surface-bg);border:1px solid var(--bs-border-color)}
+      .breath-ring{width:min(320px,60vw);height:min(320px,60vw);border-radius:999px;background-image:conic-gradient(var(--color,var(--accent-start)) var(--p,0deg), rgba(0,0,0,.06) 0);position:relative;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+      .breath-ring::before{content:"";position:absolute;inset:12px;border-radius:999px;background:var(--glass-bg);border:1px solid var(--glass-border-color);backdrop-filter:blur(12px)}
+      .breath-phase{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+      .breath-phase .label{font-weight:700}
+      .breath-phase .count{font-size:2rem}
+      .quotes-swiper{padding:12px; position:relative}
+      .quotes-swiper .swiper-slide{width:auto;transition:transform .3s ease}
+      .quotes-swiper .quote-card{background-color:var(--surface-bg);border:1px solid var(--bs-border-color);border-radius:var(--radius-standard);box-shadow:0 12px 28px rgba(0,0,0,.12);padding:1rem;height:100%;transition:box-shadow .3s ease, transform .3s ease; position:relative;will-change:transform}
+      .quotes-swiper .quote-card{min-height:140px}
+      .quotes-swiper.is-loading .swiper-wrapper{opacity:.35}
+      .quotes-swiper.is-interacting .swiper-slide-active .quote-card{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.2)}
+      .quotes-fraction{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);padding:.25rem .5rem;border-radius:999px;border:1px solid var(--glass-border-color);background-color:var(--surface-bg);font-size:.875rem}
+      .quotes-swiper .quote-card::after{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(500px 250px at 15% 20%, rgba(124,58,237,.12), transparent 60%), radial-gradient(500px 250px at 85% 80%, rgba(34,211,238,.12), transparent 60%)}
+      .quotes-swiper .swiper-slide-active .quote-card{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.18)}
+      .quote-avatar{width:40px;height:40px;border-radius:999px;object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+      .quote-stars i{color:#F59E0B}
+      .quotes-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--glass-border-color);backdrop-filter:blur(8px);background-image:linear-gradient(var(--surface-bg), var(--surface-bg)), linear-gradient(90deg, var(--accent-start), var(--accent-end));background-origin:border-box;box-shadow:0 12px 28px rgba(0,0,0,.12)}
+      .quotes-prev{left:-6px}
+      .quotes-next{right:-6px}
+      .quotes-nav i{color:var(--bs-body-color)}
+      .hero-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--glass-border-color);backdrop-filter:blur(10px);background:linear-gradient(135deg,var(--accent-start),var(--accent-end));background-origin:border-box;box-shadow:0 16px 34px rgba(0,0,0,.25);z-index:10}
+      .hero-prev{left:16px}
+      .hero-next{right:16px}
+      .hero-nav i{color:#fff}
+      .faq-accordion .accordion-item{border-radius:var(--radius-standard);overflow:hidden;border:1px solid var(--bs-border-color);box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:.75rem}
+      .faq-accordion .accordion-button{font-weight:600;background:linear-gradient(135deg, rgba(124,58,237,.08), rgba(34,211,238,.08))}
+      .faq-accordion .accordion-button:not(.collapsed){color:var(--bs-body-color);background:linear-gradient(135deg, rgba(124,58,237,.12), rgba(34,211,238,.12))}
+      .highlights-row .highlight-card{background-color:var(--surface-bg);border:1px solid var(--bs-border-color);border-radius:var(--radius-standard);box-shadow:0 12px 28px rgba(0,0,0,.12);padding:1rem}
+      .highlight-icon{font-size:1.4rem;color:var(--accent-start)}
+      .highlight-number{font-size:2rem;font-weight:700}
+      .video-card{position:relative;border-radius:var(--radius-standard);overflow:hidden;border:1px solid var(--bs-border-color);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+      .video-card .play-overlay{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.18), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.18), transparent 60%)}
+      .video-card .play-overlay i{font-size:2.4rem;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,.3)}
+      .newsletter{background-image:linear-gradient(135deg, rgba(124,58,237,.08), rgba(34,211,238,.08));border:1px solid var(--bs-border-color);border-radius:var(--radius-standard)}
+      .newsletter .input-group .form-control{border-radius:999px 0 0 999px}
+      .newsletter .input-group .btn{border-radius:0 999px 999px 0}
+      .hero-product{transition:opacity .3s ease}
+      @media (max-width: 767.98px), (max-aspect-ratio: 9/16){
+        .hero-swiper .hero-product{opacity:0; visibility:hidden}
+      }
+      .compact-hero .hero-product{opacity:0; visibility:hidden}
+      .blogs-grid .blog-card{position:relative;border-radius:var(--radius-standard);overflow:hidden;border:1px solid var(--bs-border-color);box-shadow:0 12px 28px rgba(0,0,0,.12);transition:transform .25s ease, box-shadow .25s ease;background-color:var(--surface-bg)}
+      .blogs-grid .blog-card-img{position:relative;height:220px;background-size:cover;background-position:center;background-repeat:no-repeat}
+      .blogs-grid .blog-card-img::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.22), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.22), transparent 60%)}
+      .blogs-grid .blog-card-body{padding:1rem}
+      .blogs-grid .blog-card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.18)}
+      .hero-pagination .swiper-pagination-bullet { width: 24px; height: 4px; border-radius: 2px; background-color: #fff; opacity: .5; transition: all .3s ease; }
+      .hero-pagination .swiper-pagination-bullet-active { width: 48px; background-color: var(--accent-start); opacity: 1; }
+      body{ background: url(./assets/img/background/bg1.jpeg); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;}
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="accent-gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="var(--accent-start)" />
+          <stop offset="100%" stop-color="var(--accent-end)" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="container my-3 position-relative">
+      <header id="header" class="position-absolute z-2 w-100"></header>
+      <section id="hero" class="hero-swiper vh-100 d-flex justify-content-center align-items-center ">
+        <div class="swiper hero-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide hero-slide-full">
+              <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/hero1/1600/900')"></div>
+              <div class="hero-content container">
+                <div class="row justify-content-start">
+                  <div class="col-12 col-lg-6">
+                    <h1>Build a healthy mind through aerobic movement</h1>
+                    <p>A structured approach to breathing and low‑impact cardio to cultivate calm, focus, and sustainable endurance across weekly plans.</p>
+                    <div class="cta-row">
+                      <a href="/pages/courses.html" class="btn btn-primary rounded-pill btn-cta btn-glow">Start a course</a>
+                      <a href="/posts/Aerobics/aerobics-basics.html" class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Learn basics</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide hero-slide-full">
+              <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/hero2/1600/900')"></div>
+              <div class="hero-content container">
+                <div class="row justify-content-start">
+                  <div class="col-12 col-lg-6">
+                    <h1>Condition heart health with simple interval work</h1>
+                    <p>Alternate brisk marching and controlled recovery breathing to gradually improve endurance, pacing, and cardiovascular resilience.</p>
+                    <div class="cta-row">
+                      <a href="/posts/Health/heart-health-aerobic-tips.html" class="btn btn-primary rounded-pill btn-cta btn-glow">Heart tips</a>
+                      <a href="/pages/videos.html" class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Watch guides</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide hero-slide-full">
+              <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/hero3/1600/900')"></div>
+              <div class="hero-content container">
+                <div class="row justify-content-start">
+                  <div class="col-12 col-lg-6">
+                    <h1>Use guided breathing and meditation to reset stress</h1>
+                    <p>Short, approachable sessions combine paced nasal breathing and light awareness practices to downshift and improve day‑to‑day focus.</p>
+                    <div class="cta-row">
+                      <a href="/pages/meditation.html" class="btn btn-primary rounded-pill btn-cta btn-glow">Start meditating</a>
+                      <a href="/posts/Breathing/stress-relief-with-breathing.html" class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Breathing tips</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide hero-slide-full">
+              <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/hero4/1600/900')"></div>
+              <div class="hero-content container">
+                <div class="row justify-content-start">
+                  <div class="col-12 col-lg-6">
+                    <h1>Beginner seven‑day plan to build steady progress</h1>
+                    <p>A clear, low‑impact weekly structure introduces aerobic movement, breathing, and rest so you can develop consistency without overwhelm.</p>
+                    <div class="cta-row">
+                      <a href="/posts/Aerobics/beginner-7-day-aerobics-plan.html" class="btn btn-primary rounded-pill btn-cta btn-glow">View plan</a>
+                      <a href="/pages/poses.html" class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Explore poses</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-pagination swiper-pagination" aria-live="polite"></div>
+          <button class="hero-nav hero-prev" aria-label="Previous slide"><i class="bi bi-chevron-left"></i></button>
+          <button class="hero-nav hero-next" aria-label="Next slide"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </section>
+      
+      <section class="my-4">
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="text-decoration-none" href="/pages/poses.html">
+              <div class="card h-100 glass">
+                <img class="card-img-top" src="https://picsum.photos/seed/poses-card/800/400" srcset="https://picsum.photos/seed/poses-card/800/400 1x, https://picsum.photos/seed/poses-card/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Aerobic poses" loading="lazy" decoding="async">
+                <div class="card-body">
+                  <span class="badge text-bg-primary mb-2">Explore</span>
+                  <h3 class="h6">Poses</h3>
+                  <p class="text-muted mb-0">Find do’s and don’ts across types, benefits, and anatomy.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="text-decoration-none" href="/pages/courses.html">
+              <div class="card h-100 glass">
+                <img class="card-img-top" src="https://picsum.photos/seed/courses-card/800/400" srcset="https://picsum.photos/seed/courses-card/800/400 1x, https://picsum.photos/seed/courses-card/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Courses" loading="lazy" decoding="async">
+                <div class="card-body">
+                  <span class="badge text-bg-success mb-2">Plan</span>
+                  <h3 class="h6">Courses</h3>
+                  <p class="text-muted mb-0">Match routines to hypertension, anxiety, diabetes, and more.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="text-decoration-none" href="/pages/meditation.html">
+              <div class="card h-100 glass">
+                <img class="card-img-top" src="https://picsum.photos/seed/meditation-card/800/400" srcset="https://picsum.photos/seed/meditation-card/800/400 1x, https://picsum.photos/seed/meditation-card/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Meditation" loading="lazy" decoding="async">
+                <div class="card-body">
+                  <span class="badge text-bg-info mb-2">Calm</span>
+                  <h3 class="h6">Meditation</h3>
+                  <p class="text-muted mb-0">Benefits, breath routines, and guided sessions.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="text-decoration-none" href="/pages/videos.html">
+              <div class="card h-100 glass">
+                <img class="card-img-top" src="https://picsum.photos/seed/videos-card/800/400" srcset="https://picsum.photos/seed/videos-card/800/400 1x, https://picsum.photos/seed/videos-card/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Videos" loading="lazy" decoding="async">
+                <div class="card-body">
+                  <span class="badge text-bg-warning mb-2">Watch</span>
+                  <h3 class="h6">Videos</h3>
+                  <p class="text-muted mb-0">Short tutorials on movement and breathing.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Our Blogs</h2><a href="/pages/blog.html" class="btn btn-outline-primary rounded-pill">View all</a></div>
+          <div id="ourBlogsRow" class="row g-4 blogs-grid"></div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Pose finder</h2><a href="/pages/poses.html" class="btn btn-outline-primary rounded-pill">Browse all</a></div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <a href="/pages/poses.html#poses-by-type" class="btn btn-outline-secondary rounded-pill">By type</a>
+            <a href="/pages/poses.html#poses-by-benefit" class="btn btn-outline-secondary rounded-pill">By benefit</a>
+            <a href="/pages/poses.html#poses-general" class="btn btn-outline-secondary rounded-pill">General</a>
+            <a href="/pages/poses.html#poses-by-anatomy" class="btn btn-outline-secondary rounded-pill">By anatomy</a>
+          </div>
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/pose-lowimpact/800/400" srcset="https://picsum.photos/seed/pose-lowimpact/800/400 1x, https://picsum.photos/seed/pose-lowimpact/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Low-impact march" loading="lazy" decoding="async"><div class="card-body"><h3 class="h6">Low-impact march</h3><p class="text-muted mb-0">Warm-up posture with steady breath.</p></div></div></div>
+            <div class="col-12 col-md-6 col-lg-3"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/pose-steptouch/800/400" srcset="https://picsum.photos/seed/pose-steptouch/800/400 1x, https://picsum.photos/seed/pose-steptouch/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Step-touch" loading="lazy" decoding="async"><div class="card-body"><h3 class="h6">Step-touch</h3><p class="text-muted mb-0">Coordination and soft landings.</p></div></div></div>
+            <div class="col-12 col-md-6 col-lg-3"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/pose-highknee/800/400" srcset="https://picsum.photos/seed/pose-highknee/800/400 1x, https://picsum.photos/seed/pose-highknee/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="High-knee march" loading="lazy" decoding="async"><div class="card-body"><h3 class="h6">High-knee march</h3><p class="text-muted mb-0">Raise heart rate with control.</p></div></div></div>
+            <div class="col-12 col-md-6 col-lg-3"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/pose-kneelifts/800/400" srcset="https://picsum.photos/seed/pose-kneelifts/800/400 1x, https://picsum.photos/seed/pose-kneelifts/1600/800 2x" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" alt="Standing knee lifts" loading="lazy" decoding="async"><div class="card-body"><h3 class="h6">Standing knee lifts</h3><p class="text-muted mb-0">Core stability and balance.</p></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-lg-6">
+              <h2 class="h4 mb-2">Breathing coach</h2>
+              <p class="text-muted">Inhale 4s, exhale 6s. Build calm and steady rhythm.</p>
+              <div class="d-flex gap-2 mb-2">
+                <button id="breathStart" class="btn btn-primary rounded-pill">Start</button>
+                <button id="breathStop" class="btn btn-outline-secondary rounded-pill">Stop</button>
+              </div>
+              <div id="breathStatus" class="badge text-bg-info">Idle</div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="breath-card">
+                <div class="breath-ring" id="breathRing">
+                  <div class="breath-phase">
+                    <div class="label" id="breathLabel">Idle</div>
+                    <div class="count" id="breathCount">0s</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div id="testimonials" class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Testimonials</h2><div class="text-muted">Community feedback</div></div>
+          <div id="quotesCarousel" class="swiper quotes-swiper is-loading" aria-busy="true" aria-roledescription="carousel" aria-label="Testimonials carousel" data-autoplay="true" data-autoplay-delay="5000" data-pagination="true" data-navigation="true" data-slides-mobile="1" data-slides-tablet="2" data-slides-desktop="3" data-space="24">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="quote-card">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <img class="quote-avatar" src="https://picsum.photos/seed/avatar-ayesha/80/80" alt="Ayesha" loading="lazy" decoding="async">
+                    <div><strong>Ayesha</strong><div class="quote-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div>
+                  </div>
+                  <p class="lead mb-0">Aerobics and mindful breathing changed my day-to-day energy.</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="quote-card">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <img class="quote-avatar" src="https://picsum.photos/seed/avatar-rahul/80/80" alt="Rahul" loading="lazy" decoding="async">
+                    <div><strong>Rahul</strong><div class="quote-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div>
+                  </div>
+                  <p class="lead mb-0">Meditation before cardio helped me pace and enjoy sessions.</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="quote-card">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <img class="quote-avatar" src="https://picsum.photos/seed/avatar-sara/80/80" alt="Sara" loading="lazy" decoding="async">
+                    <div><strong>Sara</strong><div class="quote-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div>
+                  </div>
+                  <p class="lead mb-0">The 7-day plan was easy to follow and effective.</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="quote-card">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <img class="quote-avatar" src="https://picsum.photos/seed/avatar-mike/80/80" alt="Mike" loading="lazy" decoding="async">
+                    <div><strong>Mike</strong><div class="quote-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div>
+                  </div>
+                  <p class="lead mb-0">I love the variety of courses available. There's something for every fitness level.</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="quote-card">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <img class="quote-avatar" src="https://picsum.photos/seed/avatar-jane/80/80" alt="Jane" loading="lazy" decoding="async">
+                    <div><strong>Jane</strong><div class="quote-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div>
+                  </div>
+                  <p class="lead mb-0">The breathing exercises have been a game-changer for my stress levels.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination" aria-live="polite"></div>
+            <div class="quotes-fraction" aria-live="polite" aria-atomic="true"></div>
+            <button class="quotes-nav quotes-prev" aria-label="Previous" aria-controls="quotesCarousel"><i class="bi bi-chevron-left"></i></button>
+            <button class="quotes-nav quotes-next" aria-label="Next" aria-controls="quotesCarousel"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Highlights</h2><span class="badge text-bg-info">Updated weekly</span></div>
+          <div class="row g-4 text-center highlights-row">
+            <div class="col-6 col-lg-3"><div class="highlight-card"><i class="bi bi-journal-richtext highlight-icon"></i><div class="highlight-number" data-count="24">0</div><div class="text-muted">Guides</div></div></div>
+            <div class="col-6 col-lg-3"><div class="highlight-card"><i class="bi bi-stopwatch highlight-icon"></i><div class="highlight-number" data-count="12">0</div><div class="text-muted">Sessions</div></div></div>
+            <div class="col-6 col-lg-3"><div class="highlight-card"><i class="bi bi-people highlight-icon"></i><div class="highlight-number" data-count="1200">0</div><div class="text-muted">Readers</div></div></div>
+            <div class="col-6 col-lg-3"><div class="highlight-card"><i class="bi bi-grid highlight-icon"></i><div class="highlight-number" data-count="8">0</div><div class="text-muted">Courses</div></div></div>
+          </div>
+        </div>
+      </section>
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-lg-6">
+              <h2 class="h4 mb-2">Aerobics and Meditation: Why they matter</h2>
+              <p class="text-muted mb-2">Aerobic exercise provides cardiovascular conditioning. Breathing controls oxygen delivery to muscles to burn fuel and move. In a high-tech world, stress, anxiety, and fatigue are rising. Aerobics and meditation together support a healthy mind and body.</p>
+              <div class="d-flex gap-2">
+                <a href="/pages/blog.html" class="btn btn-outline-primary rounded-pill">Read blog</a>
+                <a href="/pages/courses.html" class="btn btn-primary rounded-pill">Find a course</a>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="row g-3">
+                <div class="col-6"><div class="card h-100 glass"><div class="card-body"><span class="badge text-bg-success mb-2">Benefit</span><h3 class="h6 mb-1">Stress relief</h3><p class="text-muted mb-0">Calm breath and gentle movement.</p></div></div></div>
+                <div class="col-6"><div class="card h-100 glass"><div class="card-body"><span class="badge text-bg-primary mb-2">Benefit</span><h3 class="h6 mb-1">Heart health</h3><p class="text-muted mb-0">Intervals and gradual progress.</p></div></div></div>
+                <div class="col-6"><div class="card h-100 glass"><div class="card-body"><span class="badge text-bg-info mb-2">Benefit</span><h3 class="h6 mb-1">Focus</h3><p class="text-muted mb-0">Mindful routines improve clarity.</p></div></div></div>
+                <div class="col-6"><div class="card h-100 glass"><div class="card-body"><span class="badge text-bg-warning mb-2">Benefit</span><h3 class="h6 mb-1">Mobility</h3><p class="text-muted mb-0">Gentle poses support joints.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Featured courses</h2><a href="/pages/courses.html" class="btn btn-outline-primary rounded-pill">View all</a></div>
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/hypertension-card/800/400" srcset="https://picsum.photos/seed/hypertension-card/800/400 1x, https://picsum.photos/seed/hypertension-card/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Hypertension course" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-warning mb-2">Hypertension</span><h3 class="h6">Low-impact cardio + breathing</h3><p class="text-muted mb-2">Gentle rhythmic movement with paced breath.</p><a class="btn btn-primary rounded-pill" href="/pages/courses.html">Start</a></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/anxiety-card/800/400" srcset="https://picsum.photos/seed/anxiety-card/800/400 1x, https://picsum.photos/seed/anxiety-card/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Anxiety course" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-success mb-2">Anxiety</span><h3 class="h6">Mindful aerobics + calm breath</h3><p class="text-muted mb-2">Light movement with longer exhale focus.</p><a class="btn btn-primary rounded-pill" href="/pages/courses.html">Start</a></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/type2-card/800/400" srcset="https://picsum.photos/seed/type2-card/800/400 1x, https://picsum.photos/seed/type2-card/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Glucose control course" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-info mb-2">Glucose control</span><h3 class="h6">Moderate intervals + mobility</h3><p class="text-muted mb-2">Alternating brisk bouts with mobility.</p><a class="btn btn-primary rounded-pill" href="/pages/courses.html">Start</a></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Guided videos</h2><a href="/pages/videos.html" class="btn btn-outline-primary rounded-pill">View all</a></div>
+          <div class="row g-4">
+            <div class="col-12 col-md-6"><div class="video-card ratio ratio-16x9"><iframe src="https://www.youtube.com/embed/2f1M_6a2Yho" title="Beginner low-impact aerobics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="play-overlay"><i class="bi bi-play-circle"></i></div></div></div>
+            <div class="col-12 col-md-6"><div class="video-card ratio ratio-16x9"><iframe src="https://www.youtube.com/embed/FeWw8lHj4tA" title="Stress relief breathing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="play-overlay"><i class="bi bi-play-circle"></i></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Books to explore</h2><a href="/pages/books.html" class="btn btn-outline-primary rounded-pill">View all</a></div>
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/books-aerobic/800/400" srcset="https://picsum.photos/seed/books-aerobic/800/400 1x, https://picsum.photos/seed/books-aerobic/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Aerobic books" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-warning mb-2">Training</span><h3 class="h6">Aerobic Exercise: A Practical Approach</h3><p class="text-muted mb-2">Guidelines for safe training.</p><a class="btn btn-outline-primary rounded-pill" href="/pages/books.html">Browse</a></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/books-meditation/800/400" srcset="https://picsum.photos/seed/books-meditation/800/400 1x, https://picsum.photos/seed/books-meditation/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Meditation books" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-success mb-2">Mindfulness</span><h3 class="h6">Meditation for Beginners</h3><p class="text-muted mb-2">Breath-focused practices.</p><a class="btn btn-outline-primary rounded-pill" href="/pages/books.html">Browse</a></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="https://picsum.photos/seed/books-health/800/400" srcset="https://picsum.photos/seed/books-health/800/400 1x, https://picsum.photos/seed/books-health/1600/800 2x" sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Health books" loading="lazy" decoding="async"><div class="card-body"><span class="badge text-bg-info mb-2">Health</span><h3 class="h6">Cardio Health Essentials</h3><p class="text-muted mb-2">Warm‑ups, pacing, and care.</p><a class="btn btn-outline-primary rounded-pill" href="/pages/books.html">Browse</a></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h4 mb-3">FAQ</h2>
+          <div class="accordion faq-accordion" id="homeFaq">
+            <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What is aerobic exercise?</button></h2><div id="faq1" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Continuous rhythmic movement that conditions the cardiovascular system.</div></div></div>
+            <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">How should I breathe?</button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Use nasal inhale and slightly longer exhale to improve oxygen delivery.</div></div></div>
+            <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Is meditation necessary?</button></h2><div id="faq3" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Short breath routines support stress relief and better focus.</div></div></div>
+            <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">How often should I train?</button></h2><div id="faq4" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Start with 3–5 days per week, 20–30 minutes, and progress gradually.</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <div class="newsletter bg-body border rounded-4 shadow p-4 glass">
+          <div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h4 mb-0">Newsletter</h2><span class="badge text-bg-primary">Stay in the loop</span></div>
+          <form action="#" method="get">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Enter your email">
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+            <small class="text-muted">No spam. Unsubscribe anytime.</small>
+          </form>
+        </div>
+      </section>
+      <div id="footer"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/js/app.min.js?v=1"></script>
+    <script src="/assets/js/blog.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+      $(function(){
+        var t, phase = 'idle', count = 0, inh = 4, ex = 6;
+        var ring = document.getElementById('breathRing');
+        var label = document.getElementById('breathLabel');
+        var cnt = document.getElementById('breathCount');
+        function draw(){ $('#breathStatus').text(phase==='inhale'?'Inhale '+inh+'s':phase==='exhale'?'Exhale '+ex+'s':'Idle'); label.textContent = phase==='inhale'?'Inhale '+inh+'s':phase==='exhale'?'Exhale '+ex+'s':'Idle'; cnt.textContent = count+'s'; var dur = phase==='inhale'?inh:ex; var deg = dur ? Math.min(360, Math.round(count/dur*360)) : 0; ring.style.setProperty('--p', deg+'deg'); ring.style.setProperty('--color', phase==='inhale'? 'var(--accent-start)': 'var(--accent-end)'); }
+        $('#breathStart').on('click', function(){ clearInterval(t); count=0; phase='inhale'; draw(); t=setInterval(function(){ count++; draw(); if(phase==='inhale' && count>=inh){ phase='exhale'; count=0; } else if(phase==='exhale' && count>=ex){ phase='inhale'; count=0; } }, 1000); });
+        $('#breathStop').on('click', function(){ clearInterval(t); phase='idle'; count=0; draw(); });
+        function animateNum(el, target){ var n=0; var step=Math.max(1, Math.floor(target/50)); var i=setInterval(function(){ n+=step; if(n>=target){ n=target; clearInterval(i);} el.textContent = n; }, 30); }
+        document.querySelectorAll('.highlight-number[data-count]').forEach(function(el){ var target = parseInt(el.getAttribute('data-count'), 10) || 0; animateNum(el, target); });
+      });
+    </script>
+    
+  </body>
+</html>

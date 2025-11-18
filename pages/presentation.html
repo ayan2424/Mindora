@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mindora • Design Presentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="/assets/css/app.min.css?v=1" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container my-3">
+      <div id="header"></div>
+
+      <section class="bg-body border rounded-4 shadow p-4 glass mb-4 page-hero">
+        <h1 class="display-6">Teacher Presentation</h1>
+        <p class="text-muted">Design rationale, competitive analysis, mood board, and prototype overview for the redesign.</p>
+        <div class="hero-media" data-bg="https://picsum.photos/seed/presentation/1200/800"></div>
+      </section>
+
+      <section class="mb-5">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h5 mb-3">Competitive Analysis</h2>
+          <p class="mb-2">We reviewed three comparable sites focusing on hierarchy, accessibility, and performance.</p>
+          <ul class="mb-0">
+            <li>Academic health portal with strong AA color contrast and structured navigation.</li>
+            <li>Wellness education platform using a clear Z-pattern and modular components.</li>
+            <li>Course marketplace optimized for mobile-first interactions and 12-column grids.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-5">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h5 mb-3">Mood Board</h2>
+          <p class="mb-2">Three visual directions were explored: academic minimal, modern gradient, and calm organic.</p>
+          <div class="row g-3">
+            <div class="col-12 col-md-4"><div class="p-4 border rounded-4" style="background:#ffffff;color:#0f172a">Minimal</div></div>
+            <div class="col-12 col-md-4"><div class="p-4 border rounded-4" style="background:linear-gradient(135deg,#7c3aed,#22d3ee);color:#fff">Gradient</div></div>
+            <div class="col-12 col-md-4"><div class="p-4 border rounded-4" style="background:#f8fafc;color:#0f172a">Organic</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-5">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h5 mb-3">Design Decisions</h2>
+          <ul>
+            <li>Established a six-color palette with AA contrast for key interactions.</li>
+            <li>Applied an 8px spacing system and a 24px baseline for flow.</li>
+            <li>Selected Inter for headings and Manrope for body to balance legibility and tone.</li>
+            <li>Implemented 12-column grid layouts consistent with Bootstrap across breakpoints.</li>
+            <li>Defined component standards for buttons, forms, and cards with 44px touch targets.</li>
+            <li>Enhanced hero sections with layered imagery and clear CTAs.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-5">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h5 mb-3">Wireframes</h2>
+          <p class="mb-3">Mobile-first frames demonstrate F-pattern and Z-pattern flow using a 12-column grid.</p>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="p-3 border rounded-4">
+                <div class="mb-2" style="height:40px;border:1px solid var(--bs-border-color)"></div>
+                <div class="mb-2" style="height:200px;border:1px solid var(--bs-border-color)"></div>
+                <div class="mb-2" style="height:80px;border:1px solid var(--bs-border-color)"></div>
+                <div class="row g-2">
+                  <div class="col-6"><div style="height:120px;border:1px solid var(--bs-border-color)"></div></div>
+                  <div class="col-6"><div style="height:120px;border:1px solid var(--bs-border-color)"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="p-3 border rounded-4">
+                <div class="row g-2 mb-2">
+                  <div class="col-4"><div style="height:40px;border:1px solid var(--bs-border-color)"></div></div>
+                  <div class="col-8"><div style="height:40px;border:1px solid var(--bs-border-color)"></div></div>
+                </div>
+                <div class="mb-2" style="height:160px;border:1px solid var(--bs-border-color)"></div>
+                <div class="row g-2">
+                  <div class="col-3"><div style="height:100px;border:1px solid var(--bs-border-color)"></div></div>
+                  <div class="col-3"><div style="height:100px;border:1px solid var(--bs-border-color)"></div></div>
+                  <div class="col-3"><div style="height:100px;border:1px solid var(--bs-border-color)"></div></div>
+                  <div class="col-3"><div style="height:100px;border:1px solid var(--bs-border-color)"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-5">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h5 mb-3">Accessibility and Performance</h2>
+          <ul>
+            <li>WCAG AA compliant color pairs for text and UI controls.</li>
+            <li>Lazy-loaded imagery and responsive `srcset` for performance under 2 seconds.</li>
+            <li>Keyboard-focus states for interactive elements to ensure operability.</li>
+          </ul>
+        </div>
+      </section>
+
+      <div id="footer"></div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-outline-secondary rounded-circle position-fixed end-0 bottom-0 m-4 theme-toggle-btn" aria-label="Toggle theme"></button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/app.min.js?v=1"></script>
+  </body>
+  </html>

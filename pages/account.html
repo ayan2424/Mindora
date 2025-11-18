@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mindora • Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/css/app.min.css?v=1" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container my-3">
+      <div id="header"></div>
+
+      <section class="bg-body border rounded-4 shadow p-4 glass mb-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <h1 class="h4 mb-0">Your Account</h1>
+          <button class="btn btn-outline-danger rounded-pill" id="logoutBtn">Logout</button>
+        </div>
+      </section>
+
+      <section class="mb-4">
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <div class="bg-body border rounded-4 shadow p-4 glass h-100">
+              <div class="text-center mb-3">
+                <div id="avatarPreview" class="rounded-circle mx-auto" style="width:120px;height:120px;background:#eee;overflow:hidden"></div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Profile picture</label>
+                <input type="file" class="form-control" id="avatarInput" accept="image/*">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Full name</label>
+                <input type="text" class="form-control" id="nameInput" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput" required>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button id="saveProfile" class="btn btn-primary rounded-pill">Save</button>
+              </div>
+              <div id="profileMsg" class="mt-2 text-danger"></div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-8">
+            <div class="bg-body border rounded-4 shadow p-4 glass h-100">
+              <h2 class="h6 mb-3">Activity</h2>
+              <div id="activityList" class="list-group"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-4">
+        <div class="bg-body border rounded-4 shadow p-4 glass">
+          <h2 class="h6 mb-3">My Courses</h2>
+          <div id="enrollments" class="row g-3"></div>
+        </div>
+      </section>
+
+      <div id="footer"></div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-outline-secondary rounded-circle position-fixed end-0 bottom-0 m-4 theme-toggle-btn" aria-label="Toggle theme"></button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/app.min.js?v=1"></script>
+    <script>
+      $(function(){
+        if (!window.Accounts) return;
+        window.Components.init();
+        window.Accounts.getCurrentUser().then(function(user){
+          if (!user){ $('#profileMsg').removeClass('text-success').addClass('text-danger').text('Please sign in to manage your account.'); return; }
+          $('#nameInput').val(user.name||'');
+          $('#emailInput').val(user.email||'');
+          if (user.avatar){ $('#avatarPreview').html('<img src="'+user.avatar+'" style="width:100%;height:100%;object-fit:cover" alt="">'); }
+          window.Accounts.listActivity(50).then(function(items){
+            var $list = $('#activityList');
+            $list.empty();
+            items.forEach(function(it){
+              var d = new Date(it.ts);
+              var row = '<div class="list-group-item d-flex justify-content-between"><span>'+it.type+'</span><small class="text-muted">'+d.toLocaleString()+'</small></div>';
+              $list.append(row);
+            });
+          });
+          fetch('/assets/data/courses.json').then(function(r){ return r.json(); }).then(function(courses){
+            window.Accounts.listEnrollments().then(function(enrs){
+              var map={}; enrs.forEach(function(e){ map[e.courseId]=e; });
+              var html = enrs.map(function(e){ var c=courses.find(function(x){ return x.id===e.courseId; }); var done=e.completedLessons?e.completedLessons.length:0; var total=c?c.lessons.length:0; var pct=Math.round((done/Math.max(1,total))*100); return '<div class="col-12 col-md-6"><div class="border rounded-4 p-3 d-flex align-items-center justify-content-between"><div><div class="fw-semibold">'+(c?c.title:e.courseId)+'</div><div class="text-muted"><small>'+pct+'% complete</small></div></div><div class="progress" style="width:160px"><div class="progress-bar" style="width:'+pct+'%"></div></div></div></div>'; }).join('');
+              document.getElementById('enrollments').innerHTML = html || '<div class="text-muted">No enrollments yet.</div>';
+            });
+          });
+        });
+        $('#logoutBtn').on('click', function(){ window.Accounts.logout().then(function(){ window.location.href = '/index.html'; }); });
+        $('#saveProfile').on('click', function(){ var name=$('#nameInput').val().trim(); var email=$('#emailInput').val().trim(); var msg=$('#profileMsg'); var avatarHtml = $('#avatarPreview img').attr('src')||''; window.Accounts.updateProfile({ name:name, email:email, avatar:avatarHtml }).then(function(){ msg.removeClass('text-danger').addClass('text-success').text('Saved'); window.Accounts.recordActivity('profile_update',{}); }).catch(function(err){ msg.removeClass('text-success').addClass('text-danger').text(err && err.message ? err.message : 'Error'); }); });
+        $('#avatarInput').on('change', function(){ var f=this.files && this.files[0]; if (!f) return; var r=new FileReader(); r.onload=function(){ $('#avatarPreview').html('<img src="'+r.result+'" style="width:100%;height:100%;object-fit:cover" alt="">'); }; r.readAsDataURL(f); });
+      });
+    </script>
+  </body>
+  </html>

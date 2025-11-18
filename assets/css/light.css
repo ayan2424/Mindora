@@ -1,0 +1,9 @@
+[data-bs-theme="light"] {
+  --bs-body-bg: var(--color-neutral-0);
+  --bs-body-color: var(--color-neutral-900);
+  --bs-border-color: #E5E7EB;
+  --surface-bg: rgba(255,255,255,0.85);
+  --glass-bg: rgba(255,255,255,0.65);
+  --glass-border-color: #E5E7EB;
+  --nav-hover-bg: #F1F5F9;
+}

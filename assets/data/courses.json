@@ -1,0 +1,62 @@
+[
+  {
+    "id": "hypertension",
+    "title": "Low-impact cardio + breathing",
+    "description": "Gentle rhythmic movement with paced breath for heart health.",
+    "duration": "4 weeks",
+    "level": "Beginner",
+    "condition": "Hypertension",
+    "image": "https://picsum.photos/seed/course-hyp/800/450",
+    "lessons": ["Warm-up", "Intervals 1", "Recovery", "Mobility"]
+  },
+  {
+    "id": "anxiety",
+    "title": "Mindful aerobics + calm breath",
+    "description": "Light movement with longer exhale focus to reduce stress.",
+    "duration": "3 weeks",
+    "level": "Beginner",
+    "condition": "Anxiety",
+    "image": "https://picsum.photos/seed/course-anx/800/450",
+    "lessons": ["Breath basics", "Low-impact", "Meditation", "Intervals"]
+  },
+  {
+    "id": "glucose",
+    "title": "Moderate intervals + mobility",
+    "description": "Alternating brisk bouts with mobility to aid glucose control.",
+    "duration": "5 weeks",
+    "level": "Intermediate",
+    "condition": "Glucose control",
+    "image": "https://picsum.photos/seed/course-glu/800/450",
+    "lessons": ["Warm-up", "Intervals A", "Intervals B", "Mobility"]
+  },
+  {
+    "id": "back",
+    "title": "Mobility and supportive aerobics",
+    "description": "Gentle poses and steady movement to support back health.",
+    "duration": "4 weeks",
+    "level": "Beginner",
+    "condition": "Back pain",
+    "image": "https://picsum.photos/seed/course-back/800/450",
+    "lessons": ["Mobility 1", "Mobility 2", "Low-impact", "Recovery"]
+  },
+  {
+    "id": "diabetes",
+    "title": "Intervals and pacing fundamentals",
+    "description": "Gentle interval training with breath pacing fundamentals.",
+    "duration": "4 weeks",
+    "level": "Beginner",
+    "condition": "Diabetes",
+    "image": "https://picsum.photos/seed/course-diab/800/450",
+    "lessons": ["Warm-up", "Intervals", "Pacing", "Recovery"]
+  },
+  {
+    "id": "mobility",
+    "title": "Joint-friendly movement + breath",
+    "description": "Support joints with mobility and breath-led aerobic work.",
+    "duration": "3 weeks",
+    "level": "Beginner",
+    "condition": "Mobility",
+    "image": "https://picsum.photos/seed/course-mob/800/450",
+    "lessons": ["Mobility", "Low-impact", "Breath basics"]
+  }
+]

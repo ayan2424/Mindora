@@ -1,0 +1,7 @@
+@media (max-width: 576px) {
+  .page-hero { min-height: 60vh; }
+  .btn { min-height: 44px; }
+}
+@media (min-width: 577px) {
+  .page-hero { min-height: 80vh; }
+}

@@ -1,0 +1,18 @@
+:root {
+  --color-primary: #1D4ED8;
+  --color-secondary: #334155;
+  --color-accent: #e81cff;
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #F8FAFC;
+  --color-neutral-900: #0F172A;
+  --color-success: #16A34A;
+  --color-danger: #DC2626;
+  --accent-start: #ff1b6b;
+  --accent-end: #45caff;
+  --bs-primary: var(--color-primary);
+  --bs-secondary: var(--color-secondary);
+  --bs-success: var(--color-success);
+  --bs-danger: var(--color-danger);
+  --bs-link-color: var(--color-primary);
+  --bs-link-hover-color: #1E3A8A;
+}

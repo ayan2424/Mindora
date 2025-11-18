@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mindora • Categories</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="/assets/css/custom.css" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+    <link href="/assets/css/light.css" rel="stylesheet">
+    <link href="/assets/css/dark.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container my-3">
+      <div id="header"></div>
+      <section class="bg-body border rounded-4 shadow p-4 glass mb-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <h1 class="h4 mb-1">Browse by Category</h1>
+            <p class="text-muted mb-0">Find posts grouped under relevant topics.</p>
+          </div>
+          <div id="catChipRow" class="d-flex flex-wrap gap-2"></div>
+        </div>
+      </section>
+      <div id="categorySections"></div>
+      <div id="footer" class="mt-4"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/components.js"></script>
+    <script src="/assets/js/blog.js"></script>
+    <script>
+      $(function(){
+        window.Components.init();
+        Blog.loadAll().then(function(posts){
+          var cats = Blog.getCategories(posts);
+          $('#catChipRow').html(cats.map(function(c){ return '<a href="#cat_'+c.replace(/\s+/g,'_')+'" class="btn btn-outline-primary rounded-pill">'+c+'</a>'; }).join(' '));
+          var html = cats.map(function(c){
+            var group = posts.filter(function(p){ return (p.categories && p.categories.indexOf(c)>-1) || p.category===c; });
+            var grid = group.map(function(p){ return '<div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="'+(p.image||'https://picsum.photos/seed/default/600/400')+'" alt="'+(p.title||'')+'"><div class="card-body"><span class="badge '+(p.category?('text-bg-'+(p.category==='Meditation'?'success':p.category==='Breathing'?'warning':p.category==='Poses'?'secondary':p.category==='Nutrition'?'info':p.category==='Health'?'danger':'primary')):'text-bg-primary')+' mb-2">'+(p.category||c)+'</span><h3 class="h6"><a class="text-decoration-none" href="'+p.url+'">'+p.title+'</a></h3><p class="text-muted mb-0">'+(p.excerpt||'')+'</p></div></div></div>'; }).join('');
+            return '<section id="cat_'+c.replace(/\s+/g,'_')+'" class="mb-4"><div class="bg-body border rounded-4 shadow p-4 glass"><div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h5 mb-0">'+c+'</h2><a href="#" class="btn btn-outline-secondary rounded-pill" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;">Top</a></div><div class="row g-4">'+grid+'</div></div></section>';
+          }).join('');
+          $('#categorySections').html(html);
+        });
+      });
+    </script>
+  </body>
+  </html>

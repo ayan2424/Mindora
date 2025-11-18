@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Structured aerobic courses matched to health conditions, with guided breathing support and beginner‑friendly progressions.">
+    <link rel="canonical" href="/pages/courses.html">
+    <title>Mindora • Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/css/app.min.css?v=1" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="accent-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--accent-start)"/><stop offset="100%" stop-color="var(--accent-end)"/></linearGradient></defs></svg>
+    <div class="container my-3">
+      <div id="header"></div>
+
+      <section class="bg-body border rounded-4 shadow p-4 glass mb-4 page-hero">
+        <h1 class="display-6">Find structured plans for specific conditions</h1>
+        <p class="text-muted">Explore beginner‑friendly aerobic routines and guided breathing matched to hypertension, anxiety, glucose control, mobility, and more.</p>
+        <div class="d-flex gap-2 mb-2"><a href="#courseGrid" class="btn btn-primary rounded-pill btn-cta">Browse courses</a><a href="/pages/meditation.html" class="btn btn-outline-secondary rounded-pill btn-cta">Breathing benefits</a></div>
+        <div class="hero-media" data-bg="https://picsum.photos/seed/courses-hero/1200/800"></div>
+      </section>
+
+      <section class="mb-3">
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <input id="courseSearch" type="search" class="form-control" placeholder="Search courses">
+          <div id="courseFilters" class="btn-group" role="group" aria-label="Filter"></div>
+        </div>
+      </section>
+      <section class="mb-5">
+        <div id="courseGrid" class="row g-4"></div>
+      </section>
+
+      <div id="footer"></div>
+    </div>
+
+    <button id="themeToggle" class="btn btn-outline-secondary rounded-circle position-fixed end-0 bottom-0 m-4 theme-toggle-btn" aria-label="Toggle theme"></button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/app.min.js?v=1"></script>
+    <script src="/assets/js/courses.override.js"></script>
+    <script src="/assets/js/accounts.enroll.js"></script>
+    <script>
+      $(function(){
+        window.Components.init();
+        Courses.init('#courseGrid', '#courseFilters');
+        var $grid = $('#courseGrid');
+        $('#courseSearch').on('input', function(){
+          var term = ($(this).val()||'').toLowerCase();
+          $grid.children().each(function(){
+            var $col = $(this);
+            var text = ($col.find('h3').text() + ' ' + $col.find('.text-muted').first().text()).toLowerCase();
+            $col.css('display', !term || text.indexOf(term)>-1 ? '' : 'none');
+          });
+        });
+      });
+    </script>
+  </body>
+  </html>
