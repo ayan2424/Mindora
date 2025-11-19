@@ -72,9 +72,9 @@
     if (!our) return;
     function fallback(){
       var items = [
-        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: base + './pages/blog.html#start', image: './assets/img/posts/1.jpeg' },
-        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: base + './posts/Meditation/meditation-before-cardio.html', image: './assets/img/posts/2.jpeg' },
-        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: base + './posts/Nutrition/nutrition-for-cardio-training.html', image: './assets/img/posts/3.jpeg' }
+        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: base + './pages/blog.html#start', image: '../assets/img/posts/1.jpeg' },
+        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: base + './posts/Meditation/meditation-before-cardio.html', image: '../assets/img/posts/2.jpeg' },
+        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: base + './posts/Nutrition/nutrition-for-cardio-training.html', image: '../assets/img/posts/3.jpeg' }
       ];
       var html = items.map(function(p){ var aria = p.title; return '<div class="col-12 col-md-6 col-lg-4"><a class="text-decoration-none" href="'+p.url+'"><div class="blog-card"><div class="blog-card-img" role="img" aria-label="'+aria+'" style="background-image:url('+p.image+')"></div><div class="blog-card-body"><span class="badge text-bg-primary mb-2">'+p.category+'</span><h3 class="h6 mb-1">'+p.title+'</h3><p class="text-muted mb-0">'+p.excerpt+'</p></div></div></a></div>'; }).join('');
       our.innerHTML = html;
