@@ -2,434 +2,28 @@
 <html lang="en" data-bs-theme="light">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="Mindora offers beginner‑friendly aerobic training and breath‑focused meditation to build a healthy mind and resilient body.">
-  <link rel="canonical" href="/mindora/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mindora offers beginner‑friendly aerobic training and breath‑focused meditation to build a healthy mind and resilient body.">
+  <link rel="canonical" href="./">
   <title>Mindora</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/app.min.css?v=1" rel="stylesheet">
-  <link href="/mindora/assets/css/color.css" rel="stylesheet">
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    .hero-swiper {
-      min-height: 100vh;
-      display: flex;
-      align-items: end;
-      justify-content: center;
-    }
+  
+  <link href="./assets/css/style.css?v=1" rel="stylesheet">
+    
+  <link href="./assets/css/responsive.css" rel="stylesheet">
+  <link href="./assets/css/color.css" rel="stylesheet">
 
-    .btn{background-color: var(--color-secondary);
-    color: var(--color-neutral-0);}
-
-    .hero-carousel {
-      height: calc(100vh - 8rem);
-      background-color: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .6);
-      -webkit-backdrop-filter: blur(30px);
-      backdrop-filter: blur(30px);
-      border-radius: 1rem;
-      margin-bottom: 40px;
-    }
-    .hero-carousel {
-      color: var(--bs-body-color);
-    }
-
-    .glass{
-      background-color: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .6);
-      -webkit-backdrop-filter: blur(60px);
-      backdrop-filter: blur(30px);
-      border-radius: 1rem;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, .6)
-    }
-
-    .glass-black{
-      background-color: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .6);
-      -webkit-backdrop-filter: blur(60px);
-      backdrop-filter: blur(30px);
-      border-radius: 1rem;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, .6)
-    }
-
-    .hero-slide-full {
-      position: relative;
-      width: 100%;
-      height: 100%
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat
-    }
-
-    .hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(600px 300px at 20% 20%, rgba(124, 58, 237, .25), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34, 211, 238, .25), transparent 60%)
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 1rem
-    }
-
-    .hero-content h1 {
-      font-weight: 700
-    }
-
-    .hero-content p {
-      max-width: 42rem
-    }
-
-    .breath-card {
-      display: grid;
-      place-items: center;
-      border-radius: var(--radius-standard);
-      padding: 1.5rem;
-      background-color: var(--surface-bg);
-      border: 1px solid var(--bs-border-color)
-    }
-
-    .breath-ring {
-      width: min(320px, 60vw);
-      height: min(320px, 60vw);
-      border-radius: 999px;
-      background-image: conic-gradient(var(--color, var(--accent-start)) var(--p, 0deg), rgba(0, 0, 0, .06) 0);
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, .12)
-    }
-
-    .breath-ring::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 999px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border-color);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px)
-    }
-
-    .breath-phase {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      text-align: center
-    }
-
-    .breath-phase .label {
-      font-weight: 700
-    }
-
-    .breath-phase .count {
-      font-size: 2rem
-    }
-
-    .quotes-swiper {
-      padding: 12px;
-      position: relative
-    }
-
-    .quotes-swiper .swiper-slide {
-      width: auto;
-      transition: transform .3s ease
-    }
-
-    .quotes-swiper .quote-card {
-      background-color: var(--surface-bg);
-      border: 1px solid var(--bs-border-color);
-      border-radius: var(--radius-standard);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-      padding: 1rem;
-      height: 100%;
-      transition: box-shadow .3s ease, transform .3s ease;
-      position: relative;
-      will-change: transform
-    }
-
-    .quotes-swiper .quote-card {
-      min-height: 140px
-    }
-
-    .quotes-swiper.is-loading .swiper-wrapper {
-      opacity: .35
-    }
-
-    .quotes-swiper.is-interacting .swiper-slide-active .quote-card {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, .2)
-    }
-
-    .quotes-fraction {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: .25rem .5rem;
-      border-radius: 999px;
-      border: 1px solid var(--glass-border-color);
-      background-color: var(--surface-bg);
-      font-size: .875rem
-    }
-
-    .quotes-swiper .quote-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(500px 250px at 15% 20%, rgba(124, 58, 237, .12), transparent 60%), radial-gradient(500px 250px at 85% 80%, rgba(34, 211, 238, .12), transparent 60%)
-    }
-
-    .quotes-swiper .swiper-slide-active .quote-card {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, .18)
-    }
-
-    .quote-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      object-fit: cover;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .12)
-    }
-
-    .quote-stars i {
-      color: #F59E0B
-    }
-
-    .quotes-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--glass-border-color);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      background-image: linear-gradient(var(--surface-bg), var(--surface-bg)), linear-gradient(90deg, var(--accent-start), var(--accent-end));
-      background-origin: border-box;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-    }
-
-    .quotes-prev {
-      left: -6px
-    }
-
-    .quotes-next {
-      right: -6px
-    }
-
-    .quotes-nav i {
-      color: var(--bs-body-color)
-    }
-
-    .hero-nav {
-      position: absolute;
-      top: 52%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--glass-border-color);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-      background-origin: border-box;
-      box-shadow: 0 16px 34px rgba(0, 0, 0, .25);
-      z-index: 4
-    }
-
-    .hero-prev {
-      left: 6px
-    }
-
-    .hero-next {
-      right: 6px;
-    }
-
-    .hero-nav i {
-      color: #fff
-    }
-
-    .faq-accordion .accordion-item {
-      border-radius: var(--radius-standard);
-      overflow: hidden;
-      border: 1px solid var(--bs-border-color);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
-      margin-bottom: .75rem
-    }
-
-    .faq-accordion .accordion-button {
-      font-weight: 600;
-      background: linear-gradient(135deg, rgba(124, 58, 237, .08), rgba(34, 211, 238, .08))
-    }
-
-    .faq-accordion .accordion-button:not(.collapsed) {
-      color: var(--bs-body-color);
-      background: linear-gradient(135deg, rgba(124, 58, 237, .12), rgba(34, 211, 238, .12))
-    }
-
-    .highlights-row .highlight-card {
-      background-color: var(--surface-bg);
-      border: 1px solid var(--bs-border-color);
-      border-radius: var(--radius-standard);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-      padding: 1rem
-    }
-
-    .highlight-icon {
-      font-size: 1.4rem;
-      color: var(--accent-start)
-    }
-
-    .highlight-number {
-      font-size: 2rem;
-      font-weight: 700
-    }
-
-    .video-card {
-      position: relative;
-      border-radius: var(--radius-standard);
-      overflow: hidden;
-      border: 1px solid var(--bs-border-color);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .12)
-    }
-
-    .video-card .play-overlay {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(600px 300px at 20% 20%, rgba(124, 58, 237, .18), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34, 211, 238, .18), transparent 60%);
-      pointer-events: none
-    }
-
-    .video-card .play-overlay i {
-      font-size: 2.4rem;
-      color: #fff;
-      text-shadow: 0 6px 18px rgba(0, 0, 0, .3)
-    }
-
-    .newsletter {
-      background-image: linear-gradient(135deg, rgba(124, 58, 237, .08), rgba(34, 211, 238, .08));
-      border: 1px solid var(--bs-border-color);
-      border-radius: var(--radius-standard)
-    }
-
-    .newsletter .input-group .form-control {
-      border-radius: 999px 0 0 999px
-    }
-
-    .newsletter .input-group .btn {
-      border-radius: 0 999px 999px 0
-    }
-
-    .hero-product {
-      transition: opacity .3s ease
-    }
-
-    @media (max-width: 767.98px),
-    (max-aspect-ratio: 9/16) {
-      .hero-swiper .hero-product {
-        opacity: 0;
-        visibility: hidden
-      }
-    }
-
-    .compact-hero .hero-product {
-      opacity: 0;
-      visibility: hidden
-    }
-
-    .blogs-grid .blog-card {
-      position: relative;
-      border-radius: var(--radius-standard);
-      overflow: hidden;
-      border: 1px solid var(--bs-border-color);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-      transition: transform .25s ease, box-shadow .25s ease;
-      background-color: var(--surface-bg)
-    }
-
-    .blogs-grid .blog-card-img {
-      position: relative;
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat
-    }
-
-    .blogs-grid .blog-card-img::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(600px 300px at 20% 20%, rgba(124, 58, 237, .22), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34, 211, 238, .22), transparent 60%)
-    }
-
-    .blogs-grid .blog-card-body {
-      padding: 1rem
-    }
-
-    .blogs-grid .blog-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, .18)
-    }
-
-    .hero-pagination .swiper-pagination-bullet {
-      width: 18px;
-      height: 18px;
-      border-radius: 50px;
-      background-color: #fff;
-      opacity: .5;
-      transition: all .3s ease;
-    }
-
-    .hero-pagination .swiper-pagination-bullet-active {
-      width: 48px;
-      background-color: var(--accent-start);
-      opacity: 1;
-    }
-
-    body {
-      background: url(./assets/img/background/bg1.jpeg);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-    }
-  </style>
+<script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/b32979e9/www-widgetapi.vflset/www-widgetapi.js" async=""></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
-<body>
+<body style="background: url(./assets/img/background/bg2.png); background-size: cover; background-position: center; background-attachment: fixed; ">
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="accent-gradient" x1="0" y1="0" x2="1" y2="1">
@@ -455,17 +49,16 @@
                       <p>A structured approach to breathing and low‑impact cardio to cultivate calm, focus, and
                         sustainable endurance across weekly plans.</p>
                       <div class="cta-row">
-                        <a href="/mindora/pages/courses.html"
+                        <a href="./pages/courses.html"
                           class="btn btn-primary rounded-pill btn-cta btn-glow">Start a course</a>
-                        <a href="/mindora/posts/Aerobics/aerobics-basics.html"
+                        <a href="./posts/Aerobics/aerobics-basics.html"
                           class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Learn basics</a>
                       </div>
                     </div>
                   </div>
                   <div class="col-12 col-lg-6 d-none d-lg-block">
                     <div class="hero-image-frame" data-swiper-parallax="40">
-                      <img class="w-100 rounded" src="https://picsum.photos/seed/hero1/1200/800"
-                        srcset="https://picsum.photos/seed/hero1/1200/800 1x, https://picsum.photos/seed/hero1/2400/1600 2x"
+                      <img class="w-100 rounded" src="./assets/img/banner/slide1.jpeg"
                         sizes="(min-width: 992px) 50vw, 100vw" alt="Hero visual" loading="lazy" decoding="async">
                     </div>
                   </div>
@@ -484,17 +77,16 @@
                     <p>Alternate brisk marching and controlled recovery breathing to gradually improve endurance,
                       pacing, and cardiovascular resilience.</p>
                     <div class="cta-row">
-                      <a href="/mindora/posts/Health/heart-health-aerobic-tips.html"
+                      <a href="./posts/Health/heart-health-aerobic-tips.html"
                         class="btn btn-primary rounded-pill btn-cta btn-glow">Heart tips</a>
-                      <a href="/mindora/pages/videos.html"
+                      <a href="./pages/videos.html"
                         class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Watch guides</a>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6 d-none d-lg-block">
                   <div class="hero-image-frame" data-swiper-parallax="40">
-                    <img class="w-100 rounded" src="https://picsum.photos/seed/hero2/1200/800"
-                      srcset="https://picsum.photos/seed/hero2/1200/800 1x, https://picsum.photos/seed/hero2/2400/1600 2x"
+                    <img class="w-100 rounded" src="./assets/img/banner/slide2.jpeg"
                       sizes="(min-width: 992px) 50vw, 100vw" alt="Intervals visual" loading="lazy" decoding="async">
                   </div>
                 </div>
@@ -513,17 +105,16 @@
                     <p>Short, approachable sessions combine paced nasal breathing and light awareness practices to
                       downshift and improve day‑to‑day focus.</p>
                     <div class="cta-row">
-                      <a href="/mindora/pages/meditation.html"
+                      <a href="./pages/meditation.html"
                         class="btn btn-primary rounded-pill btn-cta btn-glow">Start meditating</a>
-                      <a href="/mindora/posts/Breathing/stress-relief-with-breathing.html"
+                      <a href="./posts/Breathing/stress-relief-with-breathing.html"
                         class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Breathing tips</a>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6 d-none d-lg-block">
                   <div class="hero-image-frame" data-swiper-parallax="40">
-                    <img class="w-100 rounded" src="https://picsum.photos/seed/hero3/1200/800"
-                      srcset="https://picsum.photos/seed/hero3/1200/800 1x, https://picsum.photos/seed/hero3/2400/1600 2x"
+                    <img class="w-100 rounded" src="./assets/img/banner/slide3.jpeg"
                       sizes="(min-width: 992px) 50vw, 100vw" alt="Meditation visual" loading="lazy" decoding="async">
                   </div>
                 </div>
@@ -542,17 +133,16 @@
                     <p>A clear, low‑impact weekly structure introduces aerobic movement, breathing, and rest so you can
                       develop consistency without overwhelm.</p>
                     <div class="cta-row">
-                      <a href="/mindora/posts/Aerobics/beginner-7-day-aerobics-plan.html"
+                      <a href="./posts/Aerobics/beginner-7-day-aerobics-plan.html"
                         class="btn btn-primary rounded-pill btn-cta btn-glow">View plan</a>
-                      <a href="/mindora/pages/poses.html"
+                      <a href="./pages/poses.html"
                         class="btn btn-outline-secondary rounded-pill btn-cta btn-glow">Explore poses</a>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6 d-none d-lg-block">
                   <div class="hero-image-frame" data-swiper-parallax="40">
-                    <img class="w-100 rounded" src="https://picsum.photos/seed/hero4/1200/800"
-                      srcset="https://picsum.photos/seed/hero4/1200/800 1x, https://picsum.photos/seed/hero4/2400/1600 2x"
+                    <img class="w-100 rounded" src="./assets/img/banner/slide4.jpeg"
                       sizes="(min-width: 992px) 50vw, 100vw" alt="Plan visual" loading="lazy" decoding="async">
                   </div>
                 </div>
@@ -570,7 +160,7 @@
   <section class="my-4">
     <div class="row g-4">
       <div class="col-12 col-md-6 col-lg-3">
-        <a class="text-decoration-none" href="/mindora/pages/poses.html">
+        <a class="text-decoration-none" href="./pages/poses.html">
           <div class="card h-100 glass">
             <img class="card-img-top" src="https://picsum.photos/seed/poses-card/800/400"
               srcset="https://picsum.photos/seed/poses-card/800/400 1x, https://picsum.photos/seed/poses-card/1600/800 2x"
@@ -585,7 +175,7 @@
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-3">
-        <a class="text-decoration-none" href="/mindora/pages/courses.html">
+        <a class="text-decoration-none" href="./pages/courses.html">
           <div class="card h-100 glass">
             <img class="card-img-top" src="https://picsum.photos/seed/courses-card/800/400"
               srcset="https://picsum.photos/seed/courses-card/800/400 1x, https://picsum.photos/seed/courses-card/1600/800 2x"
@@ -600,7 +190,7 @@
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-3">
-        <a class="text-decoration-none" href="/mindora/pages/meditation.html">
+        <a class="text-decoration-none" href="./pages/meditation.html">
           <div class="card h-100 glass">
             <img class="card-img-top" src="https://picsum.photos/seed/meditation-card/800/400"
               srcset="https://picsum.photos/seed/meditation-card/800/400 1x, https://picsum.photos/seed/meditation-card/1600/800 2x"
@@ -615,7 +205,7 @@
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-3">
-        <a class="text-decoration-none" href="/mindora/pages/videos.html">
+        <a class="text-decoration-none" href="./pages/videos.html">
           <div class="card h-100 glass">
             <img class="card-img-top" src="https://picsum.photos/seed/videos-card/800/400"
               srcset="https://picsum.photos/seed/videos-card/800/400 1x, https://picsum.photos/seed/videos-card/1600/800 2x"
@@ -634,7 +224,7 @@
   <section class="my-4">
     <div class="border rounded-4 shadow p-4 glass">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="h4 mb-0">Our Blogs</h2><a href="/mindora/pages/blog.html"
+        <h2 class="h4 mb-0">Our Blogs</h2><a href="./pages/blog.html"
           class="btn btn-outline-primary rounded-pill">View all</a>
       </div>
       <div id="ourBlogsRow" class="row g-4 blogs-grid"></div>
@@ -644,15 +234,15 @@
   <section class="my-4">
     <div class="border rounded-4 shadow p-4 glass">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="h4 mb-0">Pose finder</h2><a href="/mindora/pages/poses.html"
+        <h2 class="h4 mb-0">Pose finder</h2><a href="./pages/poses.html"
           class="btn btn-outline-primary rounded-pill">Browse all</a>
       </div>
       <div class="d-flex flex-wrap gap-2 mb-3">
-        <a href="/mindora/pages/poses.html#poses-by-type" class="btn btn-outline-secondary rounded-pill">By type</a>
-        <a href="/mindora/pages/poses.html#poses-by-benefit" class="btn btn-outline-secondary rounded-pill">By
+        <a href="./pages/poses.html#poses-by-type" class="btn btn-outline-secondary rounded-pill">By type</a>
+        <a href="./pages/poses.html#poses-by-benefit" class="btn btn-outline-secondary rounded-pill">By
           benefit</a>
-        <a href="/mindora/pages/poses.html#poses-general" class="btn btn-outline-secondary rounded-pill">General</a>
-        <a href="/mindora/pages/poses.html#poses-by-anatomy" class="btn btn-outline-secondary rounded-pill">By
+        <a href="./pages/poses.html#poses-general" class="btn btn-outline-secondary rounded-pill">General</a>
+        <a href="./pages/poses.html#poses-by-anatomy" class="btn btn-outline-secondary rounded-pill">By
           anatomy</a>
       </div>
       <div class="row g-4">
@@ -775,8 +365,8 @@
             delivery to muscles to burn fuel and move. In a high-tech world, stress, anxiety, and fatigue are rising.
             Aerobics and meditation together support a healthy mind and body.</p>
           <div class="d-flex gap-2">
-            <a href="/mindora/pages/blog.html" class="btn btn-outline-primary rounded-pill">Read blog</a>
-            <a href="/mindora/pages/courses.html" class="btn btn-primary rounded-pill">Find a course</a>
+            <a href="./pages/blog.html" class="btn btn-outline-primary rounded-pill">Read blog</a>
+            <a href="./pages/courses.html" class="btn btn-primary rounded-pill">Find a course</a>
           </div>
         </div>
         <div class="col-12 col-lg-6">
@@ -822,7 +412,7 @@
   <section class="my-4">
     <div class="border rounded-4 shadow p-4 glass">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="h4 mb-0">Featured courses</h2><a href="/mindora/pages/courses.html"
+        <h2 class="h4 mb-0">Featured courses</h2><a href="./pages/courses.html"
           class="btn btn-outline-primary rounded-pill">View all</a>
       </div>
       <div class="row g-4">
@@ -835,7 +425,7 @@
             <div class="card-body"><span class="badge text-bg-warning mb-2">Hypertension</span>
               <h3 class="h6">Low-impact cardio + breathing</h3>
               <p class="text-muted mb-2">Gentle rhythmic movement with paced breath.</p><a
-                class="btn btn-primary rounded-pill" href="/mindora/pages/courses.html">Start</a>
+                class="btn btn-primary rounded-pill" href="./pages/courses.html">Start</a>
             </div>
           </div>
         </div>
@@ -847,7 +437,7 @@
             <div class="card-body"><span class="badge text-bg-success mb-2">Anxiety</span>
               <h3 class="h6">Mindful aerobics + calm breath</h3>
               <p class="text-muted mb-2">Light movement with longer exhale focus.</p><a
-                class="btn btn-primary rounded-pill" href="/mindora/pages/courses.html">Start</a>
+                class="btn btn-primary rounded-pill" href="./pages/courses.html">Start</a>
             </div>
           </div>
         </div>
@@ -859,7 +449,7 @@
             <div class="card-body"><span class="badge text-bg-info mb-2">Glucose control</span>
               <h3 class="h6">Moderate intervals + mobility</h3>
               <p class="text-muted mb-2">Alternating brisk bouts with mobility.</p><a
-                class="btn btn-primary rounded-pill" href="/mindora/pages/courses.html">Start</a>
+                class="btn btn-primary rounded-pill" href="./pages/courses.html">Start</a>
             </div>
           </div>
         </div>
@@ -870,7 +460,7 @@
   <section class="my-4">
     <div class="border rounded-4 shadow p-4 glass">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="h4 mb-0">Guided videos</h2><a href="/mindora/pages/videos.html"
+        <h2 class="h4 mb-0">Guided videos</h2><a href="./pages/videos.html"
           class="btn btn-outline-primary rounded-pill">View all</a>
       </div>
       <div class="row g-4">
@@ -894,7 +484,7 @@
   <section class="my-4">
     <div class="border rounded-4 shadow p-4 glass">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="h4 mb-0">Books to explore</h2><a href="/mindora/pages/books.html"
+        <h2 class="h4 mb-0">Books to explore</h2><a href="./pages/books.html"
           class="btn btn-outline-primary rounded-pill">View all</a>
       </div>
       <div class="row g-4">
@@ -906,7 +496,7 @@
             <div class="card-body"><span class="badge text-bg-warning mb-2">Training</span>
               <h3 class="h6">Aerobic Exercise: A Practical Approach</h3>
               <p class="text-muted mb-2">Guidelines for safe training.</p><a
-                class="btn btn-outline-primary rounded-pill" href="/mindora/pages/books.html">Browse</a>
+                class="btn btn-outline-primary rounded-pill" href="./pages/books.html">Browse</a>
             </div>
           </div>
         </div>
@@ -919,7 +509,7 @@
             <div class="card-body"><span class="badge text-bg-success mb-2">Mindfulness</span>
               <h3 class="h6">Meditation for Beginners</h3>
               <p class="text-muted mb-2">Breath-focused practices.</p><a class="btn btn-outline-primary rounded-pill"
-                href="/mindora/pages/books.html">Browse</a>
+                href="./pages/books.html">Browse</a>
             </div>
           </div>
         </div>
@@ -931,7 +521,7 @@
             <div class="card-body"><span class="badge text-bg-info mb-2">Health</span>
               <h3 class="h6">Cardio Health Essentials</h3>
               <p class="text-muted mb-2">Warm‑ups, pacing, and care.</p><a class="btn btn-outline-primary rounded-pill"
-                href="/mindora/pages/books.html">Browse</a>
+                href="./pages/books.html">Browse</a>
             </div>
           </div>
         </div>
@@ -984,9 +574,9 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="assets/js/app.min.js?v=1"></script>
-  <script src="/mindora/assets/js/blog.js"></script>
-  <script src="/mindora/assets/js/main.js"></script>
+  <script src="./assets/js/app.min.js?v=1"></script>
+  <script src="./assets/js/blog.js"></script>
+  <script src="./assets/js/main.js"></script>
   <script>
     $(function () {
       var t, phase = 'idle', count = 0, inh = 4, ex = 6;
