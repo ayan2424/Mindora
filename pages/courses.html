@@ -47,12 +47,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../assets/js/app.min.js?v=1"></script>
-    <script src="../assets/js/courses.override.js"></script>
-    <script src="../assets/js/accounts.enroll.js"></script>
     <script>
       $(function(){
         window.Components.init();
-        if (window.CourseStore) { } else if (window.Courses && typeof window.Courses.init==='function'){ window.Courses.init('#courseGrid', '#courseFilters'); }
+        if (window.Courses && typeof window.Courses.init==='function'){ window.Courses.init('#courseGrid', '#courseFilters'); }
         var $grid = $('#courseGrid');
         $('#courseSearch').on('input', function(){
           var term = ($(this).val()||'').toLowerCase();
