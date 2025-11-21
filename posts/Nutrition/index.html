@@ -33,7 +33,7 @@
     <script src="../../assets/js/app.min.js?v=1"></script>
     <script src="../../assets/js/blog.js"></script>
     <script>
-      $(function(){ window.Components.init(); Blog.loadAll().then(function(posts){ Blog.renderGrid('#grid', posts.filter(function(p){ return p.url.indexOf('../../posts/Nutrition/')===0; })); }); });
+      $(function(){ window.Components.init(); Blog.loadAll().then(function(posts){ Blog.renderGrid('#grid', posts.filter(function(p){ return p.url.indexOf('/posts/Nutrition/')===0; })); }); });
     </script>
   </body>
   </html>

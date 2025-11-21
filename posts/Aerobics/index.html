@@ -36,7 +36,7 @@
       $(function(){
         window.Components.init();
         Blog.loadAll().then(function(posts){
-          var filtered = posts.filter(function(p){ return p.url.indexOf('../../posts/Aerobics/')===0; });
+          var filtered = posts.filter(function(p){ return p.url.indexOf('/posts/Aerobics/')===0; });
           Blog.renderGrid('#grid', filtered);
         });
       });

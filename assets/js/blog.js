@@ -6,7 +6,7 @@
   var segs=g.location.pathname.split('/').filter(Boolean),base=(g.location.hostname.endsWith('github.io')&&segs.length?('/'+segs[0]):'');
 
   function scanDirs(){
-    return ft(base+'../../posts/').then(function(h){
+    return ft(base+'/posts/').then(function(h){
       var d=doc(h);
       var a=[].slice.call(d.querySelectorAll('a'));
       var dirs=a.map(function(x){return x.getAttribute('href')||''})
@@ -17,12 +17,12 @@
   }
 
   function scanFiles(dir){
-    return ft(base+'../../posts/'+dir+'/').then(function(h){
+    return ft(base+'/posts/'+dir+'/').then(function(h){
       var d=doc(h);
       var a=[].slice.call(d.querySelectorAll('a'));
       var files=a.map(function(x){return x.getAttribute('href')||''})
         .filter(function(h){return/\.html?$/.test(h)});
-      return files.map(function(f){return{dir:dir,file:f,url:base+'../../posts/'+dir+'/'+f}})
+      return files.map(function(f){return{dir:dir,file:f,url:base+'/posts/'+dir+'/'+f}})
     });
   }
 
@@ -102,15 +102,15 @@
   function loadAll(){
     function fallback(){
       return [
-        {title:'Aerobics Basics: Breathing and Rhythm',category:'Aerobics',categories:['Aerobics'],url:'../../posts/Aerobics/aerobics-basics.html',excerpt:'Breathing rhythm, low‑impact patterns, and gradual progressions.',image:'/assets/img/posts/1.jpeg'},
-        {title:'Beginner 7-Day Aerobics Plan',category:'Aerobics',categories:['Aerobics'],url:'../../posts/Aerobics/beginner-7-day-aerobics-plan.html',excerpt:'Seven‑day structure combining gentle movement and breath.',image:'/assets/img/featured/2.jpeg'},
-        {title:'Stress Relief with Breathing',category:'Breathing',categories:['Breathing'],url:'../../posts/Breathing/stress-relief-with-breathing.html',excerpt:'Paced exhale and mindful awareness to downshift stress.',image:'/assets/img/featured/3.jpeg'},
-        {title:'Better Aerobic Breathing',category:'Breathing',categories:['Breathing'],url:'../../posts/Breathing/better-aerobic-breathing.html',excerpt:'Nasal inhale, longer exhale, and steady rhythm techniques.',image:'/assets/img/posts/2.jpeg'},
-        {title:'Heart Health Aerobic Tips',category:'Health',categories:['Health'],url:'../../posts/Health/heart-health-aerobic-tips.html',excerpt:'Warm‑ups, gentle intervals, and breathing guidance.',image:'/assets/img/featured/1.jpeg'},
-        {title:'Benefits of Meditation for Daily Life',category:'Meditation',categories:['Meditation'],url:'../../posts/Meditation/benefits-of-meditation.html',excerpt:'Reduce stress and improve focus with simple routines.',image:'/assets/img/posts/3.jpeg'},
-        {title:'Meditation Before Cardio',category:'Meditation',categories:['Meditation'],url:'../../posts/Meditation/meditation-before-cardio.html',excerpt:'Calm breath warm‑up to improve pacing and enjoyment.',image:'/assets/img/posts/2.jpeg'},
-        {title:'Nutrition for Cardio Training',category:'Nutrition',categories:['Nutrition'],url:'../../posts/Nutrition/nutrition-for-cardio-training.html',excerpt:'Hydration, fueling basics, and session planning.',image:'/assets/img/posts/3.jpeg'},
-        {title:'Poses for Back Pain',category:'Poses',categories:['Poses'],url:'../../posts/Poses/poses-for-back-pain.html',excerpt:'Supportive movements and do’s/don’ts for relief.',image:'/assets/img/featured/4.jpeg'}
+        {title:'Aerobics Basics: Breathing and Rhythm',category:'Aerobics',categories:['Aerobics'],url:'/posts/Aerobics/aerobics-basics.html',excerpt:'Breathing rhythm, low‑impact patterns, and gradual progressions.',image:'/assets/img/posts/1.jpeg'},
+        {title:'Beginner 7-Day Aerobics Plan',category:'Aerobics',categories:['Aerobics'],url:'/posts/Aerobics/beginner-7-day-aerobics-plan.html',excerpt:'Seven‑day structure combining gentle movement and breath.',image:'/assets/img/featured/2.jpeg'},
+        {title:'Stress Relief with Breathing',category:'Breathing',categories:['Breathing'],url:'/posts/Breathing/stress-relief-with-breathing.html',excerpt:'Paced exhale and mindful awareness to downshift stress.',image:'/assets/img/featured/3.jpeg'},
+        {title:'Better Aerobic Breathing',category:'Breathing',categories:['Breathing'],url:'/posts/Breathing/better-aerobic-breathing.html',excerpt:'Nasal inhale, longer exhale, and steady rhythm techniques.',image:'/assets/img/posts/2.jpeg'},
+        {title:'Heart Health Aerobic Tips',category:'Health',categories:['Health'],url:'/posts/Health/heart-health-aerobic-tips.html',excerpt:'Warm‑ups, gentle intervals, and breathing guidance.',image:'/assets/img/featured/1.jpeg'},
+        {title:'Benefits of Meditation for Daily Life',category:'Meditation',categories:['Meditation'],url:'/posts/Meditation/benefits-of-meditation.html',excerpt:'Reduce stress and improve focus with simple routines.',image:'/assets/img/posts/3.jpeg'},
+        {title:'Meditation Before Cardio',category:'Meditation',categories:['Meditation'],url:'/posts/Meditation/meditation-before-cardio.html',excerpt:'Calm breath warm‑up to improve pacing and enjoyment.',image:'/assets/img/posts/2.jpeg'},
+        {title:'Nutrition for Cardio Training',category:'Nutrition',categories:['Nutrition'],url:'/posts/Nutrition/nutrition-for-cardio-training.html',excerpt:'Hydration, fueling basics, and session planning.',image:'/assets/img/posts/3.jpeg'},
+        {title:'Poses for Back Pain',category:'Poses',categories:['Poses'],url:'/posts/Poses/poses-for-back-pain.html',excerpt:'Supportive movements and do’s/don’ts for relief.',image:'/assets/img/featured/4.jpeg'}
       ];
     }
     return scanPosts().then(function(posts){
