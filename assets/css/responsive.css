@@ -1,5 +1,5 @@
 @media (max-width: 576px) {
-  .page-hero { min-height: 100vh; }
+  .page-hero { min-height: 60vh; }
   .btn { min-height: 44px; }
   h1 { font-size: 2rem; line-height: 1.25; }
   h2 { font-size: 1.5rem; line-height: 1.3; }
@@ -9,7 +9,7 @@
   .page-hero .btn { width: 100%; }
 }
 @media (min-width: 577px) {
-  .page-hero { min-height: 100vh; }
+  .page-hero { min-height: 60vh; }
 }
 @media (max-width: 768px) {
   .container { padding-left: 12px; padding-right: 12px; }
