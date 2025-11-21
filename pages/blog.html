@@ -15,14 +15,8 @@
     <link href="../assets/css/style.css?v=1" rel="stylesheet">
   <link href="../assets/css/responsive.css" rel="stylesheet">
   <link href="../assets/css/color.css" rel="stylesheet">
-  <style>
-    .blog-card { background: var(--bs-body-bg); border: 1px solid var(--bs-border-color); border-radius: .75rem; box-shadow: var(--bs-box-shadow); overflow: hidden; transition: transform .2s ease; }
-    .blog-card:hover { transform: translateY(-2px); }
-    .blog-card-img { width: 100%; padding-top: 56.25%; background-size: cover; background-position: center; }
-    .blog-card-body { padding: 1rem; }
-  </style>
 </head>
-  <body style="background: url(../assets/img/background/bg.avif); background-size: cover; background-position: center; background-attachment: fixed; ">
+  <body style="background: url(../assets/img/background/bg2.png); background-size: cover; background-position: center; background-attachment: fixed; ">
     <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="accent-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--accent-start)"/><stop offset="100%" stop-color="var(--accent-end)"/></linearGradient></defs></svg>
     <div class="container my-3">
       <div id="header"></div>
@@ -32,7 +26,7 @@
           <div>
             <h1 class="display-6 mb-1">Insights on aerobic training and meditation</h1>
             <p class="text-muted mb-0">Explore evidence‑based articles on breathing, pacing, and movement fundamentals to build a healthy mind and resilient body.</p>
-            <div class="d-flex gap-2 mt-2"><a href="#postGrid" class="btn btn-primary rounded-pill btn-cta">Browse articles</a><a href="categories.html" class="btn btn-outline-secondary rounded-pill btn-cta">View categories</a></div>
+            <div class="d-flex gap-2 mt-2"><a href="#postGrid" class="btn btn-primary rounded-pill btn-cta">Browse articles</a><a href="/pages/categories.html" class="btn btn-outline-secondary rounded-pill btn-cta">View categories</a></div>
           </div>
           <div class="d-flex flex-wrap gap-2">
             <input id="postSearch" type="search" class="form-control" placeholder="Search articles">
@@ -43,7 +37,7 @@
       </section>
 
       <section class="mb-5">
-        <div id="postGrid" class="row g-4 blogs-grid"></div>
+        <div id="postGrid" class="row g-4"></div>
       </section>
 
       <div id="footer"></div>

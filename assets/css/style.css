@@ -59,7 +59,7 @@ body {
 
 body {
   font-family: var(--font-body);
-  background-image: url(../assets/img/background/bg.avif);
+  background-image: url(../assets/img/background/bg2.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -150,7 +150,7 @@ p {
 .form-control {
   min-height: 44px;
   padding: 10px 14px;
-  border-radius: 50px
+  border-radius: var(--radius-standard)
 }
 
 .card {
@@ -307,7 +307,7 @@ header .navbar {
 
 @media (min-width: 577px) {
   .page-hero {
-    min-height: 60vh
+    min-height: 80vh
   }
 }
 
@@ -689,8 +689,7 @@ section.hero-swiper {
   border-radius: var(--radius-standard);
   overflow: hidden;
   border: 1px solid var(--bs-border-color);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-  transition: transform .22s ease, box-shadow .22s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .12)
 }
 
 .video-card .play-overlay {
@@ -707,12 +706,6 @@ section.hero-swiper {
   color: #fff;
   text-shadow: 0 6px 18px rgba(0, 0, 0, .3)
 }
-
-.video-card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.18); }
-
-/* Optional meta body below video */
-.video-meta-title { margin-top: .5rem; margin-bottom: .25rem; }
-.video-meta-desc { color: var(--muted-text-color); font-size: .95rem; }
 
 .newsletter {
   background-image: linear-gradient(135deg, rgba(124, 58, 237, .08), rgba(34, 211, 238, .08));
@@ -954,176 +947,6 @@ picture .img {
   border: 1px solid var(--bs-border-color);
   transition: transform .2s ease, box-shadow .2s ease;
 }
-
-/* PDF Viewer Modal */
-.pdf-modal .modal-dialog {
-  max-width: 95vw;
-}
-
-.pdf-modal .modal-body {
-  height: 80vh;
-  padding: 0;
-}
-
-.pdf-frame {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: #fff;
-}
-
-/* Course cards — unified design */
-#courseGrid .card,
-#courseGrid .course-card {
-  border-radius: var(--radius-standard);
-  overflow: hidden;
-  border: 1px solid var(--bs-border-color);
-  box-shadow: 0 12px 28px rgba(0,0,0,.12);
-  background-color: var(--surface-bg);
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-
-#courseGrid .card:hover,
-#courseGrid .course-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(0,0,0,.18);
-}
-
-/* Ensure a consistent 16:9 media area for both legacy and new cards */
-#courseGrid .card-img-top,
-#courseGrid .course-card img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-}
-
-/* Overlay badge styling for new course-card media */
-#courseGrid .course-card .card-media {
-  position: relative;
-}
-
-#courseGrid .course-card .card-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.18), transparent 60%),
-              radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.18), transparent 60%);
-  pointer-events: none;
-}
-
-#courseGrid .course-card .badge-position {
-  position: absolute;
-  top: .5rem;
-  left: .5rem;
-}
-
-#courseGrid .course-card .card-body {
-  padding: 1rem;
-}
-
-/* Title clamp for neat layout */
-#courseGrid .card h3.h6,
-#courseGrid .course-card h5 {
-  margin-bottom: .35rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-/* Description clamp */
-#courseGrid .card .text-muted,
-#courseGrid .course-card .text-muted {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-/* Meta row with icons */
-#courseGrid .course-card .meta {
-  display: flex;
-  gap: .75rem;
-  align-items: center;
-  margin-top: .4rem;
-  color: var(--muted-text-color);
-  font-size: .95rem;
-}
-
-#courseGrid .course-card .meta i {
-  color: var(--accent-start);
-}
-
-/* Chips row */
-#courseGrid .course-card .chips {
-  margin-top: .5rem;
-}
-
-#courseGrid .course-card .chips .badge {
-  margin-right: .4rem;
-}
-
-/* Global course-card styles to use across pages (e.g., homepage) */
-.course-card {
-  border-radius: var(--radius-standard);
-  overflow: hidden;
-  border: 1px solid var(--bs-border-color);
-  box-shadow: 0 12px 28px rgba(0,0,0,.12);
-  background-color: var(--surface-bg);
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-
-.course-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(0,0,0,.18);
-}
-
-.course-card img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-}
-
-.course-card .card-media { position: relative; }
-.course-card .card-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.18), transparent 60%),
-              radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.18), transparent 60%);
-  pointer-events: none;
-}
-.course-card .badge-position { position: absolute; top: .5rem; left: .5rem; }
-.course-card .card-body { padding: 1rem; }
-
-.course-card h5 {
-  margin-bottom: .35rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.course-card .text-muted {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.course-card .meta {
-  display: flex;
-  gap: .75rem;
-  align-items: center;
-  margin-top: .4rem;
-  color: var(--muted-text-color);
-  font-size: .95rem;
-}
-.course-card .meta i { color: var(--accent-start); }
-.course-card .chips { margin-top: .5rem; }
-.course-card .chips .badge { margin-right: .4rem; }
 
 .finder-card:hover {
   transform: translateY(-2px);
@@ -1423,14 +1246,4 @@ picture .img {
 .qs-stats i {
   color: var(--accent-start);
   margin-right: .25rem;
-}
-
-.btn-group {
-  display: flex;
-  gap: .5rem;
-  padding-left: 0.6rem;
-}
-
-article{
-  margin-top: 2rem;
 }

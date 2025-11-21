@@ -17,7 +17,7 @@
   <link href="../assets/css/color.css" rel="stylesheet">
   
 </head>
-  <body style="background: url(../assets/img/background/bg.avif); background-size: cover; background-position: center; background-attachment: fixed; ">
+  <body style="background: url(../assets/img/background/bg2.png); background-size: cover; background-position: center; background-attachment: fixed; ">
     <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="accent-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--accent-start)"/><stop offset="100%" stop-color="var(--accent-end)"/></linearGradient></defs></svg>
     <div class="container my-3">
       <div id="header"></div>
@@ -25,7 +25,7 @@
       <section class="border rounded-4 shadow p-4 glass mb-4 page-hero">
         <h1 class="display-6">Find structured plans for specific conditions</h1>
         <p class="text-muted">Explore beginner‑friendly aerobic routines and guided breathing matched to hypertension, anxiety, glucose control, mobility, and more.</p>
-        <div class="d-flex gap-2 mb-2"><a href="#courseGrid" class="btn btn-primary rounded-pill btn-cta">Browse courses</a><a href="meditation.html" class="btn btn-outline-secondary rounded-pill btn-cta">Breathing benefits</a></div>
+        <div class="d-flex gap-2 mb-2"><a href="#courseGrid" class="btn btn-primary rounded-pill btn-cta">Browse courses</a><a href="/pages/meditation.html" class="btn btn-outline-secondary rounded-pill btn-cta">Breathing benefits</a></div>
         <div class="hero-media" data-bg="https://picsum.photos/seed/courses-hero/1200/800"></div>
       </section>
 
@@ -36,17 +36,7 @@
         </div>
       </section>
       <section class="mb-5">
-        <div id="courseGrid" class="row g-4 blogs-grid"></div>
-      </section>
-
-      <section class="mb-5">
-        <div class="border rounded-4 shadow p-4 glass">
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <h2 class="h4 mb-0">Detailed Notes & Guides</h2>
-            <a href="blog.html" class="btn btn-outline-primary rounded-pill">View all articles</a>
-          </div>
-          <div id="courseNotesGrid" class="row g-4 blogs-grid"></div>
-        </div>
+        <div id="courseGrid" class="row g-4"></div>
       </section>
 
       <div id="footer"></div>
@@ -56,62 +46,19 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../assets/js/app.min.js?v=1"></script>
-    <script src="../assets/js/blog.js"></script>
-    <script src="../assets/js/course-index.js?v=1"></script>
     <script>
       $(function(){
         window.Components.init();
         if (window.Courses && typeof window.Courses.init==='function'){ window.Courses.init('#courseGrid', '#courseFilters'); }
         var $grid = $('#courseGrid');
-        var $filters = $('#courseFilters');
-        function buildCourseFilters(){
-          var cats = {};
-          $grid.find('.badge').each(function(){ var t=$(this).text().trim(); if(t) cats[t]=true; });
-          var all = Object.keys(cats);
-          var chips = ['<a href="#" class="btn btn-outline-secondary rounded-pill filter-btn active" data-filter="all">All</a>']
-            .concat(all.map(function(c){ return '<a href="#" class="btn btn-outline-secondary rounded-pill filter-btn" data-filter="'+c+'">'+c+'</a>'; }));
-          $filters.html(chips.join(''));
-        }
-        function applyFilters(){
-          var term = ($('#courseSearch').val()||'').toLowerCase();
-          var cat = ($filters.find('.filter-btn.active').data('filter')||'all');
+        $('#courseSearch').on('input', function(){
+          var term = ($(this).val()||'').toLowerCase();
           $grid.children().each(function(){
             var $col = $(this);
-            var title = ($col.find('h3, h5').first().text()||'');
-            var desc = ($col.find('.text-muted').first().text()||$col.find('p').first().text()||'');
-            var text = (title + ' ' + desc).toLowerCase();
-            var badge = ($col.find('.badge').first().text()||'').trim();
-            var matchText = !term || text.indexOf(term)>-1;
-            var matchCat = (cat==='all') || (badge===cat);
-            $col.css('display', (matchText && matchCat) ? '' : 'none');
+            var text = ($col.find('h3').text() + ' ' + $col.find('.text-muted').first().text()).toLowerCase();
+            $col.css('display', !term || text.indexOf(term)>-1 ? '' : 'none');
           });
-        }
-        // Build filters after initial render
-        setTimeout(function(){ buildCourseFilters(); }, 0);
-        // Bind events
-        $(document).on('click', '#courseFilters .filter-btn', function(e){ e.preventDefault(); $('#courseFilters .filter-btn').removeClass('active'); $(this).addClass('active'); applyFilters(); });
-        $('#courseSearch').on('input', applyFilters);
-
-        // Scan directory-based courses and render into the grid
-        if(window.CourseIndex && typeof window.CourseIndex.scanAll==='function'){
-          window.CourseIndex.scanAll().then(function(courses){
-            if(Array.isArray(courses) && courses.length){
-              window.CourseIndex.renderModernGrid('#courseGrid', courses);
-              setTimeout(function(){ buildCourseFilters(); applyFilters(); }, 0);
-            }
-          }).catch(function(){});
-        }
-
-        // Load notes related to courses (Aerobics, Breathing, Health, Nutrition)
-        try{
-          if(window.Blog && typeof Blog.loadAll==='function'){
-            Blog.loadAll().then(function(posts){
-              var catsWanted=['Aerobics','Breathing','Health','Nutrition'];
-              var filtered=posts.filter(function(p){ return catsWanted.indexOf(p.category)>-1; });
-              Blog.renderModernGrid('#courseNotesGrid', filtered.slice(0,6));
-            }).catch(function(){ /* ignore */ });
-          }
-        }catch(e){}
+        });
       });
     </script>
   </body>
